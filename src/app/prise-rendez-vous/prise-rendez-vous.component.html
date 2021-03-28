@@ -1,0 +1,49 @@
+<p>prise-rendez-vous works!</p>
+<div class="container">
+    <form [formGroup]="formGroup">
+
+        <!-- <mat-form-field>
+            <mat-label>Addresse</mat-label>
+            <input matInput formControlName="thirdCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+        </mat-form-field>-->
+
+        <p>
+            <mat-label>Commune:* </mat-label>
+            <mat-form-field appearance="fill">
+                <mat-select formControlName="selectCommuneCtrl" required>
+                    <mat-option *ngFor="let communeName of communes" [value]="communeName">
+                        {{communeName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-label>Voie: </mat-label>
+            <mat-form-field>
+                <input matInput (ngModelChange)='changed($event)' [matAutocomplete]="auto"
+                    placeholder="Nom de voie (ex: Boulevard Gambetta" formControlName="inputStreetCtrl" required>
+
+
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let street of streetNames" [value]="street"
+                        (onSelectionChange)="selectedStreet(street)">
+                        {{street}}
+                    </mat-option>
+                </mat-autocomplete>
+
+
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-label>Numéro de voie:* </mat-label>
+            <mat-form-field appearance="fill">
+                <mat-select formControlName="selectStreetNumberCtrl" required>
+                    <mat-option *ngFor="let num of streetNumbers" [value]="num"
+                        (onSelectionChange)="selectedStreetNumber(num)">
+                        {{num}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+    </form>
+</div>
