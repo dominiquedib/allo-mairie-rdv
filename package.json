@@ -1,5 +1,5 @@
 {
-  "name": "allo-mairie-rdv-recette",
+  "name": "allo-mairie-rdv",
   "version": "0.0.0",
   "scripts": {
     "start": "node server.js",
