@@ -8,7 +8,49 @@ import { Observable, of } from 'rxjs';
 })
 export class EncombrantService {
 
+  encombrantUserDetails = [{
+      title: "Petit mobilier",
+      cpt: 0
+    }, {
+      title: "Grand mobilier",
+      cpt: 0
+    }, {
+      title: "Petit électroménager",
+      cpt: 0
+    }, {
+      title: "Grand électroménager",
+      cpt: 0
+    }, {
+      title: "Palette",
+      cpt: 0
+    }, {
+      title: "Informatique",
+      cpt: 0
+    }, {
+      title: "Ferraille",
+      cpt: 0
+    }, {
+      title: "Plache",
+      cpt: 0
+    }, {
+      title: "Tapis",
+      cpt: 0
+    }, {
+      title: "Sanitaire",
+      cpt: 0
+    }, {
+      title: "Literie",
+      cpt: 0
+    }, {
+      title: "Déco",
+      cpt: 0
+    }];
+  
   constructor(private http: HttpClient) { }
+
+  getEncombrantUserDetails(): Observable<any> {
+    return of(this.encombrantUserDetails);
+  }
 
   // nca/encombrants/commune/{commune}/adresse/{adresse}
   suggestionRdvByStreetName(commune: string, streetName: string): Observable<any> {

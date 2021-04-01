@@ -1,49 +1,112 @@
-<p>prise-rendez-vous works!</p>
+<!--TODO add bootstrap to project-->
 <div class="container">
-    <form [formGroup]="formGroup">
+    <div class="m-5">
+        <h1>Prendre un rendez-vous pour un encombrant</h1>
+        <form [formGroup]="formGroup">
 
-        <!-- <mat-form-field>
-            <mat-label>Addresse</mat-label>
-            <input matInput formControlName="thirdCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-        </mat-form-field>-->
+            <!-- <mat-form-field>
+                <mat-label>Addresse</mat-label>
+                <input matInput formControlName="thirdCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+            </mat-form-field>-->
 
-        <p>
-            <mat-label>Commune:* </mat-label>
-            <mat-form-field appearance="fill">
-                <mat-select formControlName="selectCommuneCtrl" required>
-                    <mat-option *ngFor="let communeName of communes" [value]="communeName">
-                        {{communeName}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-label>Voie: </mat-label>
-            <mat-form-field>
-                <input matInput (ngModelChange)='changed($event)' [matAutocomplete]="auto"
-                    placeholder="Nom de voie (ex: Boulevard Gambetta" formControlName="inputStreetCtrl" required>
-
-
-                <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let street of streetNames" [value]="street"
-                        (onSelectionChange)="selectedStreet(street)">
-                        {{street}}
-                    </mat-option>
-                </mat-autocomplete>
+            <p>
+                <mat-label>Commune:* </mat-label>
+                <mat-form-field appearance="fill">
+                    <mat-select formControlName="selectCommuneCtrl" required>
+                        <mat-option *ngFor="let communeName of communes" [value]="communeName">
+                            {{communeName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-label>Voie: </mat-label>
+                <mat-form-field>
+                    <input matInput (ngModelChange)='changed($event)' [matAutocomplete]="auto"
+                        placeholder="Nom de voie (ex: Boulevard Gambetta" formControlName="inputStreetCtrl" required>
 
 
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-label>Numéro de voie:* </mat-label>
-            <mat-form-field appearance="fill">
-                <mat-select formControlName="selectStreetNumberCtrl" required>
-                    <mat-option *ngFor="let num of streetNumbers" [value]="num"
-                        (onSelectionChange)="selectedStreetNumber(num)">
-                        {{num}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </p>
-    </form>
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let street of streetNames" [value]="street"
+                            (onSelectionChange)="selectedStreet(street)">
+                            {{street}}
+                        </mat-option>
+                    </mat-autocomplete>
+
+
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-label>Numéro de voie:* </mat-label>
+                <mat-form-field appearance="fill">
+                    <mat-select formControlName="selectStreetNumberCtrl" required>
+                        <mat-option *ngFor="let num of streetNumbers" [value]="num"
+                            (onSelectionChange)="selectedStreetNumber(num)">
+                            {{num}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </p>
+
+
+
+            <button class='m-4' mat-raised-button (click)="openDialog()">Date du rdv</button> {{selectedDate}}
+            <div class='m-4' *ngIf="infoZone">
+                {{ infoZone }}
+            </div>
+    
+
+
+            <p>
+                <mat-label>Nom: </mat-label>
+                <mat-form-field>
+                    <input matInput placeholder="Nom" formControlName="nameCtrl" required>
+                </mat-form-field>
+            </p>
+
+
+
+            <p>
+                <mat-label>Adresse mail: </mat-label>
+                <mat-form-field>
+                    <input matInput placeholder="Adresse mail" formControlName="emailCtrl" type="email" required>
+                </mat-form-field>
+            </p>
+
+            <p>
+                <!--TODO recheck optional required minimum one selected -->
+                <mat-label>Téléphone: </mat-label>
+                <mat-form-field>
+                    <input matInput placeholder="Téléphone fixe ou Mobile" formControlName="phoneCtrl" type="number">
+                </mat-form-field>
+            </p>
+
+
+            <mat-checkbox class="m-3">L’usager souhaite être prévenu par SMS</mat-checkbox>
+              
+
+            <mat-grid-list cols="4" rowHeight="4:2" gutterSize="10px">
+                
+                <mat-grid-tile
+                    *ngFor="let type of userEncombrantDetails"
+                    [colspan]="1"
+                    [rowspan]="1"
+                    [style.background]="'lightblue'">
+                  {{ type.title }}
+                </mat-grid-tile>
+
+                <!--<mat-card *ngFor="let type of userEncombrantDetails" style="margin:10px;" (click)="onCardClick($event)" matRipple class="clickable" >{{ type.title }}</mat-card> -->
+
+              </mat-grid-list>
+
+
+
+
+        </form>
+
+
+
+    </div>
+
+
 </div>
