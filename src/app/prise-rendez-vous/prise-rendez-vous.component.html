@@ -85,14 +85,26 @@
             <mat-checkbox class="m-3">L’usager souhaite être prévenu par SMS</mat-checkbox>
               
 
-            <mat-grid-list cols="4" rowHeight="4:2" gutterSize="10px">
+            <mat-grid-list cols="3" rowHeight="4:2" gutterSize="10px">
                 
                 <mat-grid-tile
-                    *ngFor="let type of userEncombrantDetails"
+                    *ngFor="let type of userEncombrantDetails"                 
                     [colspan]="1"
                     [rowspan]="1"
                     [style.background]="'lightblue'">
-                  {{ type.title }}
+                    <div>
+                        <div *ngIf="type.cpt > 0">
+                            <button mat-mini-fab color="primary" (click)="onRemoveElement(type.id)">
+                                <mat-icon>-</mat-icon>
+                            </button>
+                            {{ type.cpt }}
+                        </div>
+                        {{ type.title }}
+                        <button mat-mini-fab color="accent" (click)="onCardClick(type.id)">
+                            <mat-icon>+</mat-icon>
+                          </button>
+                    </div>
+ 
                 </mat-grid-tile>
 
                 <!--<mat-card *ngFor="let type of userEncombrantDetails" style="margin:10px;" (click)="onCardClick($event)" matRipple class="clickable" >{{ type.title }}</mat-card> -->
@@ -100,6 +112,9 @@
               </mat-grid-list>
 
 
+            <div class="mt-5">
+                Détail:
+            </div>
 
 
         </form>

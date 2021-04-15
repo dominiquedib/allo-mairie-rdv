@@ -9,39 +9,51 @@ import { Observable, of } from 'rxjs';
 export class EncombrantService {
 
   encombrantUserDetails = [{
+      id: 1,
       title: "Petit mobilier",
       cpt: 0
     }, {
+      id: 2,
       title: "Grand mobilier",
       cpt: 0
     }, {
+      id: 3,
       title: "Petit électroménager",
       cpt: 0
     }, {
+      id: 4,
       title: "Grand électroménager",
       cpt: 0
     }, {
+      id: 5,
       title: "Palette",
       cpt: 0
     }, {
+      id: 6,
       title: "Informatique",
       cpt: 0
     }, {
+      id: 7,
       title: "Ferraille",
       cpt: 0
     }, {
+      id: 8,
       title: "Plache",
       cpt: 0
     }, {
+      id: 9,
       title: "Tapis",
       cpt: 0
     }, {
+      id: 10,
       title: "Sanitaire",
       cpt: 0
     }, {
+      id: 11,
       title: "Literie",
       cpt: 0
     }, {
+      id: 12,
       title: "Déco",
       cpt: 0
     }];
@@ -50,6 +62,19 @@ export class EncombrantService {
 
   getEncombrantUserDetails(): Observable<any> {
     return of(this.encombrantUserDetails);
+  }
+
+  incrementEncombrantCpt(id): Observable<any> {
+    let cardItem = this.encombrantUserDetails.find(x => x.id == id);
+    cardItem.cpt += 1;
+    return of (this.encombrantUserDetails);
+  }
+
+  decrementEncombrantCpt(id): Observable<any>{
+    let cardItem = this.encombrantUserDetails.find(x => x.id == id);
+    cardItem.cpt -= 1;
+    return of (this.encombrantUserDetails);
+
   }
 
   // nca/encombrants/commune/{commune}/adresse/{adresse}

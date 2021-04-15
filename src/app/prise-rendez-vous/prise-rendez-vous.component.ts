@@ -111,9 +111,24 @@ export class PriseRendezVousComponent implements OnInit {
   }
 
 
-  public onCardClick(evt: MouseEvent){
+  /*public onCardClick(evt: MouseEvent){
     console.log(evt);
+  }*/
+
+  onCardClick(ElementId) {
+    this.encombrantService.incrementEncombrantCpt(ElementId).subscribe(resultEncombrantUserDetails => {
+      console.log("Result Encombrant Details ", resultEncombrantUserDetails);
+      this.userEncombrantDetails = resultEncombrantUserDetails;
+    })
   }
+
+  onRemoveElement(ElementId) {
+    this.encombrantService.decrementEncombrantCpt(ElementId).subscribe(resultEncombrantUserDetails => {
+      console.log("Result Encombrant Details ", resultEncombrantUserDetails);
+      this.userEncombrantDetails = resultEncombrantUserDetails;
+    })
+  }
+
 
 }
 
